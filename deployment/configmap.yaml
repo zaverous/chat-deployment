@@ -1,7 +1,8 @@
-kind: ConfigMap
 apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: CM
-  namespace: chat
+  name: cimsi-config
+  namespace: cimsi-chat
 data:
-  key: default
+  BACKEND_URL: "http://backend-service:5000"
+  MONGO_DB_NAME: "cimsi"

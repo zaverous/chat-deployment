@@ -23,26 +23,26 @@ spec:
         env:
         - name: BACKEND_URL
           valueFrom:
-          configMapKeyRef:
-            name: cimsi-config
-            key: BACKEND_URL
+            configMapKeyRef:
+              name: cimsi-config
+              key: BACKEND_URL
         - name: MONGO_URL
           value: "mongodb://$(MONGO_INITDB_ROOT_USERNAME):$(MONGO_INITDB_ROOT_PASSWORD)@mongodb-service:27017/$(MONGO_DB_NAME)"
         - name: MONGO_INITDB_ROOT_USERNAME
           valueFrom:
           secretKeyRef:
             name: mongodb-secret
-          key: MONGO_INITDB_ROOT_USERNAME
+            key: MONGO_INITDB_ROOT_USERNAME
         - name: MONGO_INITDB_ROOT_PASSWORD
           valueFrom:
-          secretKeyRef:
-            name: mongodb-secret
-            key: MONGO_INITDB_ROOT_PASSWORD
+            secretKeyRef:
+              name: mongodb-secret
+              key: MONGO_INITDB_ROOT_PASSWORD
         - name: MONGO_DB_NAME
           valueFrom:
-          configMapKeyRef:
-            name: cimsi-config
-            key: MONGO_DB_NAME
+            configMapKeyRef:
+              name: cimsi-config
+              key: MONGO_DB_NAME
 ---
 apiVersion: v1
 kind: Service

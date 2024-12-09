@@ -17,15 +17,15 @@ spec:
     spec:
       containers:
       - name: frontend
-      image: carliwi97/cimsi-frontend:latest
-      ports:
-      - containerPort: 5173
-      env:
-      - name: BACKEND_URL
-      valueFrom:
-        configMapKeyRef:
-          name: cimsi-config
-          key: BACKEND_URL
+        image: carliwi97/cimsi-frontend:latest
+        ports:
+        - containerPort: 5173
+        env:
+        - name: BACKEND_URL
+          valueFrom:
+            configMapKeyRef:
+              name: cimsi-config
+              key: BACKEND_URL
 ---
 apiVersion: v1
 kind: Service

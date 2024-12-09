@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: cimsi-chat
+  labels:
+    app: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+      image: carliwi97/cimsi-frontend:latest
+      ports:
+      - containerPort: 5173
+      env:
+      - name: BACKEND_URL
+      valueFrom:
+        configMapKeyRef:
+          name: cimsi-config
+          key: BACKEND_URL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: cimsi-chat
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5173
+      nodePort: 30001
+  type: NodePort

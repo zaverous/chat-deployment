@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cimsi-chat
+  namespace: argocd
+spec:
+  destination:
+    namespace: cimsi-chat
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/zaverous/chat-deployment.git
+    targetRevision: deploy
+    path: deployment
+  project: default
+  syncPolicy:
+    syncOptions:
+    - CreateNameSpace=true
